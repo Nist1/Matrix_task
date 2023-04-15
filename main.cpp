@@ -24,6 +24,17 @@ void FillZero(int* mas, int len)
     }
 }
 
+double GetDouble(int l, int m, int* arr) 
+{
+    double x = 0;
+    int k = 0;
+    for (int i = 1; i <= l; i++)
+    {
+        x += arr[k++] * pow(10, m - i);
+    }
+    return x;
+}
+
 double RandomDouble(int min, int max)
 {
     int lengthOfNumber = RandomInt(1, 8);
@@ -35,16 +46,6 @@ double RandomDouble(int min, int max)
         arr[i] = RandomInt(0, 9);
     }
     return GetDouble(lengthOfNumber, maxDegree, arr);
-}
-
-double GetDouble(int l, int m, int* arr) {
-    double x = 0;
-    int k = 0;
-    for (int i = 1; i <= l; i++)
-    {
-        x += arr[k++] * pow(10, m - i);
-    }
-    return x;
 }
 
 void TestPlusPlusRange()
