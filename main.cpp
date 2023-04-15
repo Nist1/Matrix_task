@@ -17,113 +17,118 @@ int RandomInt(int min, int max) {
     return x;
 }
 
-double GerRandomDouble(int min, int max)
+void FillZero(int* mas, int len)
 {
-    double num = RandomInt(min, max);
-    double finalNum = num / abs(max) + abs(RandomInt(min, max));
-    return finalNum;
+    for (int i = 0; i < len; i++) {
+        mas[i] = 0;
+    }
+}
+
+double RandomDouble(int min, int max)
+{
+    int lengthOfNumber = RandomInt(1, 8);
+    int arr[8];
+    FillZero(arr, 8);
+    int maxDegree = RandomInt(0, lengthOfNumber);
+    for (int i = 0; i < lengthOfNumber; i++)
+    {
+        arr[i] = RandomInt(0, 9);
+    }
+    return GetDouble(lengthOfNumber, maxDegree, arr);
+}
+
+double GetDouble(int l, int m, int* arr) {
+    double x = 0;
+    int k = 0;
+    for (int i = 1; i <= l; i++)
+    {
+        x += arr[k++] * pow(10, m - i);
+    }
+    return x;
 }
 
 void TestPlusPlusRange()
 {
-    double num = GerRandomDouble(15, 27);
+    double num = RandomDouble(15, 27);
     if (num >= 15 && num <= 27) {
         cout << "Test 1 passed: " << num << " is in range (15, 27)" << endl;
     }
     else {
-        cout << "Test 1 not passed: " << num << " is not in range (15, 27)" << endl;
+        cout << "Test 1 NOT passed: " << num << " is NOT in range (15, 27)" << endl;
     }
 }
 
 void TestMinusMinusRange()
 {
-    double num = GerRandomDouble(-52, -12);
+    double num = RandomDouble(-52, -12);
     if (num >= -52 && num <= -12) {
         cout << "Test 2 passed: " << num << " is in range (-52, -12)" << endl;
     }
     else {
-        cout << "Test 2 not passed: " << num << " is not in range (-52, -12)" << endl;
+        cout << "Test 2 NOT passed: " << num << " is NOT in range (-52, -12)" << endl;
     }
 }
 
 void TestPlusMinusRange()
 {
-    double num = GerRandomDouble(-33, 80);
+    double num = RandomDouble(-33, 80);
     if (num >= -33 && num <= 80) {
         cout << "Test 3 passed: " << num << " is in range (-33, 80)" << endl;
     }
     else {
-        cout << "Test 3 not passed: " << num << " is not in range (-33, 80)" << endl;
+        cout << "Test 3 NOT passed: " << num << " is NOT in range (-33, 80)" << endl;
     }
 }
 
 void TestZeroRange()
 {
-    double num = GerRandomDouble(0, 0);
+    double num = RandomDouble(0, 0);
     if (num == 0) {
         cout << "Test 4 passed: " << num << " is 0" << endl;
     }
     else {
-        cout << "Test 4 not passed: " << num << " is 0" << endl;
+        cout << "Test 4 NOT passed: " << num << " is 0" << endl;
     }
 }
 
 void TestOneZeroRange()
 {
-    double num = GerRandomDouble(0, 25);
+    double num = RandomDouble(0, 25);
     if (num >= 0 && num <= 25) {
         cout << "Test 5 passed: " << num << " is in range (0, 25)" << endl;
     }
     else {
-        cout << "Test 5 not passed: " << num << " is not in range (0, 25)" << endl;
+        cout << "Test 5 NOT passed: " << num << " is NOT in range (0, 25)" << endl;
     }
 
-    num = GerRandomDouble(-30, 0);
+    num = RandomDouble(-30, 0);
     if (num >= -30 && num <= 0) {
         cout << "Test 6 passed: " << num << " is in range (-30, 0)" << endl;
     }
     else {
-        cout << "Test 6 not passed: " << num << " is not in range (-30, 0)" << endl;
+        cout << "Test 6 NOT passed: " << num << " is NOT in range (-30, 0)" << endl;
     }
 }
 
 void TestEqualRange()
 {
-    double num = GerRandomDouble(15, 15);
+    double num = RandomDouble(15, 15);
     if (num == 15) {
         cout << "Test 7 passed: " << num << " is 15" << endl;
     }
     else {
-        cout << "Test 7 not passed: " << num << " is not 15" << endl;
+        cout << "Test 7 NOT passed: " << num << " is NOT 15" << endl;
     }
 }
 
 void TestSmallRange()
 {
-    double num = GerRandomDouble(-1, 1);
+    double num = RandomDouble(-1, 1);
     if (num >= -1 && num <= 1) {
         cout << "Test 8 passed: " << num << " is in range (-1, 1)" << endl;
     }
     else {
-        cout << "Test 8 not passed: " << num << " is not in range (-1, 1)" << endl;
-    }
-}
-
-void RandomRangeTest()
-{
-    int min = RandomInt(-10000, 10000);
-    int max = RandomInt(-10000, 10000);
-    if (min > max) {
-        int tmp = max;
-        max = min;
-        min = max;
-    }
-    double num = GerRandomDouble(min, max);
-    if (num > -33 && num < 80) {
-        cout << "Random test passed: " << num << " is in range ("<< min << ' , ' << max << ")" << endl;
-    }
-    else {
-        cout << "Random test not passed: " << num << " is not in range (" << min << ' , ' << max << ")" << endl;
+        cout << "Test 8 NOT passed: " << num << " is NOT in range (-1, 1)" << endl;
     }
 }
 
@@ -136,7 +141,6 @@ void TestRandomDouble()
     TestOneZeroRange();
     TestEqualRange();
     TestSmallRange();
-    RandomRangeTest();
 }
 
 int main()
